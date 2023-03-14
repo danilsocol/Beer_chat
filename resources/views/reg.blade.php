@@ -16,7 +16,7 @@
         </div>
         <form class="register-form">
             <input class="input" type="text" placeholder="mail"/>
-            <input class="input" type="password" placeholder="nuckname"/>
+            <input class="input" type="password" placeholder="nickname"/>
             <input class="input" type="password" placeholder="username"/>
             <input class="input" type="text" placeholder="password"/>
             <input class="input" type="text" placeholder="password"/>
