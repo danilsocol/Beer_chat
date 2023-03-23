@@ -16,10 +16,10 @@
         </div>
         <form class="register-form">
             <input  type="text" placeholder="mail"/>
-            <input  type="password" placeholder="nickname"/>
-            <input  type="password" placeholder="username"/>
-            <input  type="text" placeholder="password"/>
-            <input  type="text" placeholder="password"/>
+            <input  type="text" placeholder="nickname"/>
+            <input  type="text" placeholder="username"/>
+            <input  type="password" placeholder="password"/>
+            <input  type="password" placeholder="password"/>
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
