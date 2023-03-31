@@ -95,3 +95,28 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.login-form-error {
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 9px);
+    height: 18px;
+    color: #e32636;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form-error .alert {
+    width: 18px;
+    height: 18px;
+}
+
+.error-text {
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+.error-text span {
+    color: #e32636;
+    text-align: left;
+}

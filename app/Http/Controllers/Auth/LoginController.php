@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     public function create(){
-        return view('auth');
+        return view('login');
     }
 
     public function store(Request $request){
@@ -21,6 +21,7 @@ class LoginController extends Controller
             'email' => ['required','string','email'],
             'password'=>['required','string'],
         ]);
+
         if(!Auth::attempt($request->only('email','password'),$request->boolean('remember'))){
             throw ValidationException::withMessages([
                 'email'=> trans('auth.failed')

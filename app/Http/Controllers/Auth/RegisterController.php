@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function create(){
-        return view('reg');
+        return view('register');
     }
+
 
     public function store(Request $req){
 
@@ -24,14 +25,15 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $req->nickname,
+            'name' => $req->name,
             'username' => $req->username,
             'email' => $req->email,
             'password' => Hash::make($req->password),
+            'role_id' => 1
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('');
+        return redirect()->route(''); // TODO redirect to
     }
 }
