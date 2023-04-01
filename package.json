@@ -13,5 +13,8 @@
         "axios": "^1.1.2",
         "laravel-mix": "^6.0.6",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "feather-icons": "^4.29.0"
     }
 }
