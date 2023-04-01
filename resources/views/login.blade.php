@@ -11,15 +11,6 @@
         <div>
             <h1>🍺 Вход 🍺</h1>
         </div>
-       {{-- @if(session('status'))
-            <div class="notification">
-                <div class="notification-block" role="alert" id="success-alert">
-                    <i data-feather="check-circle" class="icon"></i>
-                    <p class="text">{{session('status')}}</p>
-                    <i data-feather="x" class="icon close" id="close-alert"></i>
-                </div>
-            </div>
-        @endif--}}
         <form method="post" action="{{ route('login') }}" autocomplete="off" class="login-form">
             @csrf
             @error('email')
@@ -59,7 +50,7 @@
                 </div>
             </label>
             <button class="btn-login">login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <p class="message">Not registered? <a href="{{route('register')}}">Create an account</a></p>
         </form>
     </div>
 </div>
