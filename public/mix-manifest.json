@@ -1,11 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/messenger.js": "/js/messenger.js",
-    "/js/bootstrap.js": "/js/bootstrap.js",
     "/css/reg.css": "/css/reg.css",
     "/css/auth.css": "/css/auth.css",
+    "/css/forgot-password.css": "/css/forgot-password.css",
     "/css/reset.css": "/css/reset.css",
     "/css/messenger.css": "/css/messenger.css",
     "/css/app.css": "/css/app.css",
-    "/css/welcome.css": "/css/welcome.css"
+    "/css/welcome.css": "/css/welcome.css",
+    "/css/authentication.css": "/css/authentication.css"
 }

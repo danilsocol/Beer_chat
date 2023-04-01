@@ -56,6 +56,7 @@
             </label>
             <button class="btn-login">login</button>
             <p class="message">Not registered? <a href="{{route('register')}}">Create an account</a></p>
+            <p class="message"><a href="{{route('password.email')}}">Forgot password</a></p>
         </form>
     </div>
 </div>
