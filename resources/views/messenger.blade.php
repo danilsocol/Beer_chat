@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset("css/messenger.css") }}"/>
     <link rel="stylesheet" href="{{ asset("css/app.css") }}"/>
     <script src="{{ asset("js/bootstrap.js") }}"></script>
-    <title>BEER CHAT</title>
+    <title>Beer Chat</title>
 </head>
 <body class="messenger-body">
 <ul class="messenger">
@@ -19,18 +19,22 @@
             <div class="user-block">
                 <div class="user-info">
                     <img class="user-image" src="{{$url}}" alt="profile">
-                    <span class="user-username">{{$user->username}}</span>
+                    <div class="user-name-username">
+                        <div class="container-user-username">
+                            <span class="user-username">{{$user->username}}</span>
+                        </div>
+                        <div class="container-user-name">
+                            <span class="user-name">{{$user->name}}</span>
+                        </div>
+                    </div>
+                    <form method="post" action="{{route('logout')}}" class="logout">
+                        @csrf
+                        <button type="submit" class="logout-btn">
+                            Logout
+                            <i data-feather="log-out" class="logout-icon icon"></i>
+                        </button>
+                    </form>
                 </div>
-                <span class="user-name">
-                        {{$user->name}}
-                    </span>
-                <form method="post" action="{{route('logout')}}" class="logout">
-                    @csrf
-                    <button type="submit" class="logout-btn">
-                        Logout
-                        <i data-feather="log-out" class="logout-icon icon"></i>
-                    </button>
-                </form>
             </div>
             <form class="search-block">
                 <input class="search-input" id="search-message">
@@ -58,8 +62,7 @@
                     </li>--}}
                 </ul>
             </div>
-            <div
-                class="messenger-input"
+            <div class="messenger-input"
                 id="messageForm">
                 <div class="messenger-input-block">
                     <input

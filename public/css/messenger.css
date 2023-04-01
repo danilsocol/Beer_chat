@@ -135,18 +135,24 @@
     width: 100%;
     max-width: 100%;
     align-items: center;
+
 }
-.user-column .user-username {
+
+.user-column .user-name-username{
     margin-left: 18px;
+}
+
+.user-column .user-username {
     font-size: 24px;
     line-height: 36px;
     font-weight: 500;
+    width: 100%;
 }
 .user-column .user-name {
-    text-align: center;
     margin-top: 12px;
     line-height: 18px;
     font-weight: 400;
+    width: 100%;
 }
 
 .found-users {
@@ -161,8 +167,8 @@
 }
 
 .logout {
-    margin-top: 12px;
-    width: 100%;
+    width: 40%;
+    margin-left: auto;
 }
 .logout .logout-btn {
     cursor: pointer;

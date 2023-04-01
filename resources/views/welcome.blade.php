@@ -37,7 +37,6 @@
                     <img class="img-pivo" src="https://posudaguide.ru/wp-content/uploads/2019/04/Pivnaya-kruzhka.jpg"/>
                 </div>
             </div>
-
         </div>
     </body>
 </html>
