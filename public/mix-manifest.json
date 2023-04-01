@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/messenger.js": "/js/messenger.js",
+    "/js/authentication.js": "/js/authentication.js",
     "/css/reg.css": "/css/reg.css",
     "/css/auth.css": "/css/auth.css",
     "/css/reset.css": "/css/reset.css",

@@ -80,9 +80,6 @@
                        placeholder="password"
                        minlength="8"
                        value="{{old('password')}}">
-                <div class="eye">
-                    <i data-feather="eye" class="icon"></i>
-                </div>
             </label>
             @error('password')
             @if ($message === "The password confirmation does not match.")
@@ -97,9 +94,6 @@
                     required type="password"
                     placeholder="confirm password"
                     minlength="8">
-                <div class="eye">
-                    <i data-feather="eye" class="icon"></i>
-                </div>
             </label>
 
             <button type="submit">create</button>

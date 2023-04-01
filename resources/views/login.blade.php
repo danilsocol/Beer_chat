@@ -45,9 +45,6 @@
                         placeholder="Password"
                         minlength="8"
                         value="{{old('password')}}">
-                <div class="eye">
-                    <i data-feather="eye" class="icon"></i>
-                </div>
             </label>
             <button class="btn-login">login</button>
             <p class="message">Not registered? <a href="{{route('register')}}">Create an account</a></p>
