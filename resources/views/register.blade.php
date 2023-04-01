@@ -8,6 +8,14 @@
     <link href="{{ asset('css/reg.css') }}" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
+<header class="header">
+    <div class="container-route">
+        <a class="route" href="{{ route('login') }}" >Log in</a>
+    </div>
+    <div class="container-route">
+        <a class="route" href="{{ route('register') }}">Register</a>
+    </div>
+</header>
 <body>
 <div class="login-page">
     <div class="form">
@@ -97,7 +105,7 @@
             </label>
 
             <button type="submit">create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
+            <p class="message">Already registered? <a href="{{ route('login') }}">Sign In</a></p>
         </form>
     </div>
 </div>

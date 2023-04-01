@@ -5,6 +5,14 @@
     <link href="{{ asset('css/auth.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
+<header class="header">
+    <div class="container-route">
+        <a class="route" href="{{ route('login') }}" >Log in</a>
+    </div>
+    <div class="container-route">
+        <a class="route" href="{{ route('register') }}">Register</a>
+    </div>
+</header>
 <body>
 <div class="login-page">
     <div class="form">

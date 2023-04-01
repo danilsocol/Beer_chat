@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
+body{
+    background: url("https://catherineasquithgallery.com/uploads/posts/2021-03/1614779057_22-p-pivnoi-fon-23.jpg");
+}
 .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -91,7 +93,7 @@
     color: #EF3B3A;
 }
 body {
-    background: #9ca3af; /* fallback for old browsers */
+    background: url("https://catherineasquithgallery.com/uploads/posts/2021-03/1614779057_22-p-pivnoi-fon-23.jpg");
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -123,3 +125,47 @@ body {
     text-align: left;
 }
 
+body {
+    background: url("https://catherineasquithgallery.com/uploads/posts/2021-03/1614779057_22-p-pivnoi-fon-23.jpg");
+}
+
+.color-text {
+    color: black;
+}
+
+.container{
+    background: white;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.header{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container-route{
+    padding: 10px;
+
+}
+
+.route {
+    color: red;
+    font-family: helvetica;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.route:hover {
+    text-decoration: underline;
+}
+
+.route:active {
+    color: black;
+}
+
+.route:visited {
+    color: purple;
+}
