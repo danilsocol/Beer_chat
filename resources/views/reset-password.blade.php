@@ -83,9 +83,9 @@
                     minlength="8">
             </label>
             <button class="btn-login">Восстановить</button>
-            <p class="message"><a href="{{route('register')}}">Create an account</a></p>
-            <p class="message"><a href="{{route('login')}}">Already have account</a></p>
         </form>
+        <p class="message"><a href="{{route('register')}}">Create an account</a></p>
+        <p class="message"><a href="{{route('login')}}">Already have account</a></p>
     </div>
 </div>
 </body>
