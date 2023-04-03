@@ -142,8 +142,10 @@ const messengerVM = {
         profile.setAttribute("id", `user${user.id}`);
         profile.classList.add("profile");
         profile.innerHTML = `
-            <img class="min-user-image" src="${messengerVM.getUserAvatar(user)}" alt="profile">
-            <span class="profile-name">${user.name}</span>`;
+            <div class="user-item">
+                <img class="user-item-image" src="${messengerVM.getUserAvatar(user)}" alt="profile">
+                <span class="user-item-username" >${user.name}</span>
+            </div>`;
         profile.addEventListener("click", () => {
             if(!(messengerVM.currentChat && (messengerVM.currentChat.second_user_id === user.id ||
                 messengerVM.currentChat.first_user_id === user.id))){

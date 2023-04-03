@@ -7929,7 +7929,7 @@ var messengerVM = {
     var profile = document.createElement('div');
     profile.setAttribute("id", "user".concat(user.id));
     profile.classList.add("profile");
-    profile.innerHTML = "\n            <img class=\"min-user-image\" src=\"".concat(messengerVM.getUserAvatar(user), "\" alt=\"profile\">\n            <span class=\"profile-name\">").concat(user.name, "</span>");
+    profile.innerHTML = "\n            <div class=\"user-item\">\n                <img class=\"user-item-image\" src=\"".concat(messengerVM.getUserAvatar(user), "\" alt=\"profile\">\n                <span class=\"user-item-username\" >").concat(user.name, "</span>\n            </div>");
     profile.addEventListener("click", function () {
       if (!(messengerVM.currentChat && (messengerVM.currentChat.second_user_id === user.id || messengerVM.currentChat.first_user_id === user.id))) {
         messengerVM.openChat(user);

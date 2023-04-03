@@ -44,15 +44,6 @@
             <div class="found-users">
                 <ul class="user-profiles" id="users">
 
-          {{--          <li  id="item"  class="user-item">
-                        <img class="user-item-image" src="{{$url}}" alt="profile">
-                        <span class="user-item-username">{{$user->username}}</span>
-                    </li>
-
-                    <li  id="item" class="user-item">
-                        <img class="user-item-image" src="{{$url}}" alt="profile">
-                        <span class="user-item-username">{{$user->username}}</span>
-                    </li>--}}
 
                 </ul>
             </div>
