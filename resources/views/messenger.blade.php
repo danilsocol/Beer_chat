@@ -42,9 +42,9 @@
                 </div>
             </form>
             <div class="found-users">
-                <ul class="user-list">
+                <ul class="user-profiles" id="users">
 
-                    <li  id="item"  class="user-item">
+          {{--          <li  id="item"  class="user-item">
                         <img class="user-item-image" src="{{$url}}" alt="profile">
                         <span class="user-item-username">{{$user->username}}</span>
                     </li>
@@ -52,7 +52,7 @@
                     <li  id="item" class="user-item">
                         <img class="user-item-image" src="{{$url}}" alt="profile">
                         <span class="user-item-username">{{$user->username}}</span>
-                    </li>
+                    </li>--}}
 
                 </ul>
             </div>
@@ -61,16 +61,11 @@
     <li class="messenger-l-column">
         <section class="messenger-column">
             <div class="messenger-header">
-                <span class="messenger-header-text">Username</span>
+                <span id="chat-name" class="messenger-header-text">Username</span>
             </div>
             <div class="messenger-content">
                 <ul class="messages" id="messages">
-                    {{--<li class="left-message message-block">
-                        <img class="low-user-image" src="{{$url}}" alt="profile">
-                        <div class="message">
-                            <span class="message-text">${message.text}</span>
-                        </div>
-                    </li>--}}
+
                 </ul>
             </div>
             <div class="messenger-input"
