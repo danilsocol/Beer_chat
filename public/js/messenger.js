@@ -7888,6 +7888,13 @@ var messengerVM = {
     });
   }
 };
+
+/*const onClick = {
+    clickItem: () => {
+        alert("Кролик номер " );
+    }
+}*/
+
 document.addEventListener("DOMContentLoaded", function () {
   Echo["private"]('chat').listen('MessageSend', function (e) {
     messengerVM.appendMessage(e.message, e.user);
@@ -7897,6 +7904,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   var sender = document.getElementById("messageSender");
   var message = document.getElementById("message");
+
+  /*    const click = document.getElementsByClassName("user-item");*/
+
   apiManager.getAllMessages(1).then(function (data) {
     if (data.data) {
       messengerVM.writeAllMessages(data.data);
@@ -7904,6 +7914,12 @@ document.addEventListener("DOMContentLoaded", function () {
   })["catch"](function (e) {
     console.log(e);
   });
+
+  /*    console.log(click)
+      for (let x of click){
+          x.addEventListener("click", () => onClick.clickItem() )
+      }*/
+
   sender.addEventListener("click", function () {
     return messengerVM.sendMessage(message);
   });

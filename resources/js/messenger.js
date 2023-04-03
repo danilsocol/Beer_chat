@@ -29,6 +29,7 @@ const messengerVM = {
         input.value = "";
         return false;
     },
+
     appendMessage: (message,user) => {
         const messenger = messengerVM.messageBlock;
         if (message && user) {
@@ -39,6 +40,7 @@ const messengerVM = {
             messenger.scrollTo(0, messenger.scrollHeight);
         }
     },
+
     getMessageView: (message,user,isLeft) => {
         const elem = document.createElement('li');
         elem.innerHTML = `<img class="low-user-image" src="${messengerVM.getUserAvatar(user)}" alt="profile">
@@ -59,6 +61,7 @@ const messengerVM = {
         })
         return elem;
     },
+
     createMessageMenu: (messageId) => {
         const menu = document.createElement('div');
         const deleteSvg = feather.icons['trash-2'].toSvg({class: 'icon', id: 'delete'});
@@ -98,6 +101,13 @@ const messengerVM = {
         })
     }
 }
+
+/*const onClick = {
+    clickItem: () => {
+        alert("Кролик номер " );
+    }
+}*/
+
 document.addEventListener("DOMContentLoaded", () => {
     Echo.private('chat')
         .listen('MessageSend', (e) => {
@@ -110,6 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sender = document.getElementById("messageSender");
     const message = document.getElementById("message");
 
+/*    const click = document.getElementsByClassName("user-item");*/
+
     apiManager.getAllMessages(1).then(data => {
         if (data.data) {
             messengerVM.writeAllMessages(data.data)
@@ -117,6 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }).catch(e => {
         console.log(e);
     })
+
+/*    console.log(click)
+    for (let x of click){
+        x.addEventListener("click", () => onClick.clickItem() )
+    }*/
 
     sender.addEventListener("click", () => messengerVM.sendMessage(message));
 
@@ -127,3 +144,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 })
+
