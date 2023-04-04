@@ -1,34 +1,31 @@
 <?php
 
 namespace App\Events;
-
 namespace App\Events;
 
-use App\Models\Chat;
-use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageDelete implements ShouldBroadcast
+class UserGetByName implements ShouldBroadcast
 {
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
+    public Collection $users;
 
-    public Message $message;
-
-    public function __construct(Message $message)
+    public function __construct(Collection  $users)
     {
-        $this->message = $message;
+        $this->users=$users;
     }
 
     public function broadcastOn(): Channel|PrivateChannel|array
     {
-        $chat = Chat::where("id",$this->message->chat_id)->first();
-        return new PrivateChannel('chat.'.$chat->id);
+        return new PrivateChannel('users');
     }
 }

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ asset("css/reset.css") }}">
     <link rel="stylesheet" href="{{ asset("css/messenger.css") }}"/>
     <link rel="stylesheet" href="{{ asset("css/app.css") }}"/>
-    <script src="{{ asset("js/bootstrap.js") }}"></script>
     <title>Beer Chat</title>
 </head>
 <body class="messenger-body">
@@ -43,23 +42,21 @@
                 </div>
             </form>
             <div class="found-users">
+                <ul class="user-profiles" id="users">
 
+
+                </ul>
             </div>
         </section>
     </li>
     <li class="messenger-l-column">
         <section class="messenger-column">
             <div class="messenger-header">
-                <span class="messenger-header-text">Username</span>
+                <span id="chat-name" class="messenger-header-text">Username</span>
             </div>
             <div class="messenger-content">
-                <ul class="messages" id="messages">
-                    {{--<li class="left-message message-block">
-                        <img class="low-user-image" src="{{$url}}" alt="profile">
-                        <div class="message">
-                            <span class="message-text">${message.text}</span>
-                        </div>
-                    </li>--}}
+                <ul class="messages center" id="messages">
+                    <h1 class="hello-text">Choose a chat for the start</h1>
                 </ul>
             </div>
             <div class="messenger-input"
@@ -79,6 +76,7 @@
         </section>
     </li>
 </ul>
+<script src="{{ asset("js/bootstrap.js") }}"></script>
 <script src="{{ asset("js/app.js") }}"></script>
 <script src="{{ asset("js/messenger.js") }}"></script>
 </body>

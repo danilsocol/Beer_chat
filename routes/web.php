@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MessengerController;
 use App\Http\Controllers\UserController;
 use App\Providers\RouteServiceProvider;
@@ -36,16 +37,25 @@ Route::post('/reset-password', [ResetPasswordController::class, 'store'])->
 middleware('guest')->name('password.update');
 
 Route::get('/user/{id}', [UserController::class, 'user'])->whereNumber('id')->
-middleware('auth')->name('user');
+middleware('auth')->name('user.id');
+
+Route::get('/user/{name?}', [UserController::class, 'userByName'])->
+middleware('auth')->name('user.name');
 
 Route::get(RouteServiceProvider::MESSENGER, [MessengerController::class, 'create'])->
 middleware('auth')->name('messenger');
 
-Route::get("/messages/{chat_id}", [ChatController::class, 'messages'])->
-middleware('auth')->name('chat.messages');
+Route::get("/chats/{user_id}", [ChatController::class, 'getAllChats'])->
+middleware('auth')->name('user.chats');
 
-Route::delete("/message/{message_id}", [ChatController::class, 'delete'])->
-middleware('auth')->name('chat.messages');
+Route::post("/chat", [ChatController::class, 'store'])->
+middleware('auth')->name('chat.create');
 
-Route::post("/message", [ChatController::class, 'store'])->
+Route::delete("/message/{message_id}", [MessageController::class, 'delete'])->
+middleware('auth')->name('message.delete');
+
+Route::post("/message", [MessageController::class, 'store'])->
 middleware('auth')->name('message.send');
+
+Route::get("/messages/{chat_id}", [MessageController::class, 'getAllMessages'])->
+middleware('auth')->name('chat.id');
