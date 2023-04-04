@@ -55,8 +55,8 @@
                 <span id="chat-name" class="messenger-header-text">Username</span>
             </div>
             <div class="messenger-content">
-                <ul class="messages" id="messages">
-
+                <ul class="messages center" id="messages">
+                    <h1 class="hello-text">Choose a chat for the start</h1>
                 </ul>
             </div>
             <div class="messenger-input"

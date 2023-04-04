@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
@@ -18,17 +19,22 @@ class MessageSend implements ShouldBroadcast
     use InteractsWithSockets;
     use SerializesModels;
 
-    public $user;
-    public $message;
+    public User $user;
+    public Message $message;
 
     public function __construct(User $user, Message $message)
     {
         $this->user = $user;
         $this->message = $message;
     }
-
+    public function broadcastWhen(): bool
+    {
+        $chat = Chat::where("id",$this->message->chat_id)->first();
+        return $chat->first_user_id === $this->user->id || $chat->second_user_id === $this->user->id;
+    }
     public function broadcastOn(): Channel|PrivateChannel|array
     {
-        return new PrivateChannel('chat');
+        $chat = Chat::where("id",$this->message->chat_id)->first();
+        return new PrivateChannel('chat.'.$chat->id);
     }
 }

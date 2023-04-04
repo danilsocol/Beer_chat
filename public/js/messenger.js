@@ -7807,6 +7807,9 @@ var apiManager = {
   getAllMessages: function getAllMessages(chatId) {
     return axios.get("/messages/" + chatId);
   },
+  getUserById: function getUserById(userId) {
+    return axios.get("/user/" + userId);
+  },
   deleteMessage: function deleteMessage(messageId) {
     return axios["delete"]("/message/".concat(messageId));
   },
@@ -7824,6 +7827,7 @@ var messengerVM = {
   usersBlock: document.getElementById('users'),
   currentChat: null,
   userChats: [],
+  openChats: [],
   sendMessage: function sendMessage(input) {
     var text = input.value;
     if (messengerVM.currentChat && messengerVM.currentChat.id != null) {
@@ -7889,6 +7893,7 @@ var messengerVM = {
         document.removeEventListener("click", closeMenu, true);
       }
     };
+    document.addEventListener('contextmenu', closeMenu, true);
     document.addEventListener('click', closeMenu, true);
     return menu;
   },
@@ -7935,22 +7940,29 @@ var messengerVM = {
     return profile;
   },
   openChat: function openChat(user) {
-    messengerVM.messageBlock.innerHTML = "";
     apiManager.createChat(messengerVM.currentUser, user.id).then(function (data) {
+      messengerVM.messageBlock.innerHTML = "";
+      messengerVM.messageBlock.classList.remove("center");
       messengerVM.currentChat = data.data;
       messengerVM.writeAllMessages(data.data.messages);
       messengerVM.chatHeader.textContent = user.name;
-      console.log(user);
-      console.log("chat.".concat(messengerVM.currentChat.id));
-      Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageSend', function (e) {
-        console.log(e);
-        messengerVM.appendMessage(e.message, e.user);
-      });
-      Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageDelete', function (e) {
-        messengerVM.deleteMessageView(e.message.id);
-      });
+      if (!messengerVM.openChats.find(function (x) {
+        return x.id === messengerVM.currentChat.id;
+      })) {
+        messengerVM.openChats.push({
+          id: messengerVM.currentChat.id
+        });
+        console.log(messengerVM.openChats);
+        Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageSend', function (e) {
+          messengerVM.appendMessage(e.message, e.user);
+        });
+        Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageDelete', function (e) {
+          messengerVM.deleteMessageView(e.message.id);
+        });
+      }
     })["catch"](function () {
       messengerVM.messageBlock.innerHTML = "";
+      messengerVM.messageBlock.classList.remove("center");
     });
   },
   printProfiles: function printProfiles(users) {

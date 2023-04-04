@@ -18,6 +18,9 @@ const apiManager = {
     getAllMessages: (chatId) => {
         return axios.get("/messages/" + chatId);
     },
+    getUserById: (userId) => {
+        return axios.get("/user/" + userId);
+    },
     deleteMessage: (messageId) => {
         return axios.delete(`/message/${messageId}`);
     },
@@ -35,6 +38,7 @@ const messengerVM = {
     usersBlock: document.getElementById('users'),
     currentChat: null,
     userChats : [],
+    openChats: [],
     sendMessage: (input) => {
         const text = input.value
         if(messengerVM.currentChat && messengerVM.currentChat.id != null){
@@ -98,6 +102,7 @@ const messengerVM = {
                 document.removeEventListener("click",closeMenu,true);
             }
         }
+        document.addEventListener('contextmenu', closeMenu,true);
         document.addEventListener('click', closeMenu,true);
         return menu;
     },
@@ -152,26 +157,27 @@ const messengerVM = {
         return profile;
     },
     openChat: (user) => {
-        messengerVM.messageBlock.innerHTML = "";
         apiManager.createChat(messengerVM.currentUser, user.id).then(data => {
+            messengerVM.messageBlock.innerHTML = "";
+            messengerVM.messageBlock.classList.remove("center");
             messengerVM.currentChat = data.data;
             messengerVM.writeAllMessages(data.data.messages)
             messengerVM.chatHeader.textContent = user.name;
-
-            console.log(user)
-
-            console.log(`chat.${messengerVM.currentChat.id}`)
-            Echo.private(`chat.${messengerVM.currentChat.id}`)
-                .listen('MessageSend', (e) => {
-                    console.log(e)
-                    messengerVM.appendMessage(e.message, e.user);
-                });
-            Echo.private(`chat.${messengerVM.currentChat.id}`)
-                .listen('MessageDelete', (e) => {
-                    messengerVM.deleteMessageView(e.message.id);
-                });
+            if(!messengerVM.openChats.find(x=>x.id === messengerVM.currentChat.id)){
+                messengerVM.openChats.push({id:messengerVM.currentChat.id})
+                console.log(messengerVM.openChats)
+                Echo.private(`chat.${messengerVM.currentChat.id}`)
+                    .listen('MessageSend', (e) => {
+                        messengerVM.appendMessage(e.message, e.user);
+                    });
+                Echo.private(`chat.${messengerVM.currentChat.id}`)
+                    .listen('MessageDelete', (e) => {
+                        messengerVM.deleteMessageView(e.message.id);
+                    });
+            }
         }).catch(() => {
             messengerVM.messageBlock.innerHTML = "";
+            messengerVM.messageBlock.classList.remove("center");
         });
     },
     printProfiles: (users) => {

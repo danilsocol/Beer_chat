@@ -13,9 +13,8 @@ class ChatChannel
     }
 
 
-    public function join(User $user)
+    public function join(User $user) : bool
     {
-        Auth::id() === $user->id;
-        return true;
+        return Auth::id() === $user->id;
     }
 }

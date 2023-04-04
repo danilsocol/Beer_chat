@@ -317,3 +317,15 @@
     margin-right: 4px;
 }
 
+.messages .hello-text {
+    font-size: 36px;
+    font-weight: 500;
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
