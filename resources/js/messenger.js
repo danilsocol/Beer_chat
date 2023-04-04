@@ -18,9 +18,6 @@ const apiManager = {
     getAllMessages: (chatId) => {
         return axios.get("/messages/" + chatId);
     },
-    getUserById: (userId) => {
-        return axios.get("/user/" + userId);
-    },
     deleteMessage: (messageId) => {
         return axios.delete(`/message/${messageId}`);
     },

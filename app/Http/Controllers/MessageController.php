@@ -8,6 +8,7 @@ use App\Models\Message;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller
@@ -21,6 +22,7 @@ class MessageController extends Controller
     }
     public function store(Request $request): Message
     {
+        Log::info($request);
 
         $request->validate(
             [
