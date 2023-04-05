@@ -238,16 +238,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (messengerVM.currentUser !== null){
         messengerVM.printAllChats();
     }
-    sender.addEventListener("click", () => messengerVM.sendMessage(message));
+    if(sender){
+        sender.addEventListener("click", () => messengerVM.sendMessage(message));
+    }
+    if(searchInput){
+        searchInput.addEventListener("input", (e) => {
+            apiManager.getUserByName(e.target.value);
+        })
+    }
 
-    searchInput.addEventListener("input", (e) => {
-        apiManager.getUserByName(e.target.value)
-    })
+    if(message){
+        message.addEventListener("keyup", (e) => {
+            e.preventDefault();
+            if (e.key === 'Enter') {
+                sender.click()
+            }
+        });
+    }
 
-    message.addEventListener("keyup", (e) => {
-        e.preventDefault();
-        if (e.key === 'Enter') {
-            sender.click()
-        }
-    });
 })

@@ -8023,18 +8023,24 @@ document.addEventListener("DOMContentLoaded", function () {
   if (messengerVM.currentUser !== null) {
     messengerVM.printAllChats();
   }
-  sender.addEventListener("click", function () {
-    return messengerVM.sendMessage(message);
-  });
-  searchInput.addEventListener("input", function (e) {
-    apiManager.getUserByName(e.target.value);
-  });
-  message.addEventListener("keyup", function (e) {
-    e.preventDefault();
-    if (e.key === 'Enter') {
-      sender.click();
-    }
-  });
+  if (sender) {
+    sender.addEventListener("click", function () {
+      return messengerVM.sendMessage(message);
+    });
+  }
+  if (searchInput) {
+    searchInput.addEventListener("input", function (e) {
+      apiManager.getUserByName(e.target.value);
+    });
+  }
+  if (message) {
+    message.addEventListener("keyup", function (e) {
+      e.preventDefault();
+      if (e.key === 'Enter') {
+        sender.click();
+      }
+    });
+  }
 });
 })();
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MessengerController;
@@ -59,3 +60,13 @@ middleware('auth')->name('message.send');
 
 Route::get("/messages/{chat_id}", [MessageController::class, 'getAllMessages'])->
 middleware('auth')->name('chat.id');
+
+Route::prefix("admin")->controller("Admin\AdminController")->group(
+    function () {
+        Route::get('/', 'index')->
+        middleware(['auth','admin'])->name('admin.index');
+    }
+);
+
+/*Route::get("/admin", [AdminController::class, 'index'])->
+middleware(['auth','admin'])->name('admin.index');*/
