@@ -50,49 +50,20 @@
         </section>
     </li>
     <li class="messenger-l-column">
-        <section class="messenger-column">
+        <section class="messenger-column" id="admin-section">
             <div class="messenger-header">
-                <span id="chat-name" class="messenger-header-text">Username</span>
+                <span class="messenger-header-text" id="chat-name">Admin panel</span>
             </div>
-            <div class="admin-user-info">
-                <img class="admin-user-image" src="{{$url}}" alt="profile">
-                <div class="admin-text">
-                    <div>
-                        <span class="admin-user-name">name:</span>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <span class="admin-user-name">nickname:</span>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <span class="admin-user-name">role:</span>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <span class="admin-user-name">mail:</span>
-                    </div>
+            <div class="big-user-info center" id="user-info">
+                <span class="notify-text">Select user for view info</span>
+            </div>
+            <div class="admin-chats">
+                <div class="admin-chats-header">
+                    <span class="header-name">user's chats</span>
                 </div>
-
-                <div class="admin-user-text">
-                    <div>
-                        <span class="admin-user-name">{{$user->name}}</span>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <span class="admin-user-name">{{$user->name}}</span>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <select id="r_selector" class="select-css">
-                            <option value=”r_user”>user</option>
-                            <option value=”r_admin”>admin</option>
-                            <option value=”r_fsb”>fsb</option>
-                        </select>
-                    </div>
-                    <div class="admin-user-name-container">
-                        <span class="admin-user-name">{{$user->name}}</span>
-                    </div>
-                </div>
-                <form method="delete">
-                    <button class="btn-delete">Удалить пользователя</button>
-                </form>
-
+                <ul class="user-chats center" id="user-chats">
+                    <span class="notify-text">Select user for view info</span>
+                </ul>
             </div>
         </section>
     </li>
@@ -100,5 +71,6 @@
 <script src="{{ asset("js/bootstrap.js") }}"></script>
 <script src="{{ asset("js/app.js") }}"></script>
 <script src="{{ asset("js/messenger.js") }}"></script>
+<script src="{{ asset("js/admin.js") }}"></script>
 </body>
 </html>

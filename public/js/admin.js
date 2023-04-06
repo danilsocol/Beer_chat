@@ -7793,20 +7793,61 @@ function bit_rol(d, _) {
 var apiManager = {
   getUserByName: function getUserByName(name) {
     return axios.get("/user/" + name);
+  },
+  getUserById: function getUserById(id) {
+    return axios.get("/user/id/" + id);
+  },
+  getAllChats: function getAllChats(userId) {
+    return axios.get("/chats/" + userId);
+  },
+  banUser: function banUser(userId) {
+    return axios["delete"]("/user/" + userId);
   }
 };
 var adminVM = {
   currentUser: Number(document.querySelector('meta[name="user_id"]').content),
   usersBlock: document.getElementById('users'),
   users: [],
+  userInfo: document.getElementById("user-info"),
+  userChats: document.getElementById("user-chats"),
+  openUserPanel: function openUserPanel(user) {
+    adminVM.createUserInfo(user);
+  },
+  createUserChats: function createUserChats(chats, userId) {
+    adminVM.userChats.classList.remove("center");
+    adminVM.userChats.innerHTML = "";
+    chats.forEach(function (value) {
+      if (value.from.id === userId) {
+        var userChat = adminVM.createUserChat(value.to);
+        adminVM.userChats.appendChild(userChat);
+      } else {
+        var _userChat = adminVM.createUserChat(value.from);
+        adminVM.userChats.appendChild(_userChat);
+      }
+    });
+  },
+  createUserChat: function createUserChat(user) {
+    var profile = document.createElement('li');
+    profile.classList.add("profile");
+    profile.innerHTML = "\n            <img class=\"user-image\" src=\"".concat(adminVM.getUserAvatar(user), "\" alt=\"profile\">\n            <span class=\"profile-name\">").concat(user.username, "</span>");
+    return profile;
+  },
+  createUserInfo: function createUserInfo(user) {
+    adminVM.userInfo.classList.remove("center");
+    adminVM.userInfo.innerHTML = "\n            <img class=\"big-user-image\" src=\"".concat(adminVM.getUserAvatar(user), "\" alt=\"profile\">\n            <ul class=\"text-user-info\">\n                <li class=\"text-field\" id=\"u_username\">").concat(user.username, "</li>\n                <li class=\"text-field\" id=\"u_name\">").concat(user.name, "</li>\n                <li class=\"text-field\" id=\"u_email\">").concat(user.mail, "</li>\n                <li class=\"text-field\" id=\"u_role\">\n                    <select id=\"r_selector\" class=\"select-css\">\n                        <option value=\u201Dadmin\u201D ").concat(user.role_id === 2 ? "selected" : "", ">admin</option>\n                        <option value=\u201Duser\u201D ").concat(user.role_id === 1 ? "selected" : "", ">user</option>\n                        <option value=\u201Dfsb\u201D ").concat(user.role_id === 3 ? "selected" : "", ">fsb</option>\n                    </select>\n                </li>\n            </ul>\n            <button class=\"ban-button\" id=\"ban-btn\">Ban</button>");
+    var banBtn = adminVM.userInfo.querySelector("#ban-btn");
+    banBtn.addEventListener("click", function () {
+      apiManager.banUser(user.id).then(function (value) {
+        console.log(value);
+      });
+    });
+  },
   getProfileView: function getProfileView(user) {
     var profile = document.createElement('div');
     profile.setAttribute("id", "user".concat(user.id));
     profile.classList.add("profile");
     profile.innerHTML = "\n            <img class=\"min-user-image\" src=\"".concat(adminVM.getUserAvatar(user), "\" alt=\"profile\">\n            <span class=\"profile-name\">").concat(user.name, "</span>");
-    profile.addEventListener("click", function () {
-      //TODO open user profile
-    });
+    profile.addEventListener("click", function () {});
     return profile;
   },
   printProfiles: function printProfiles(users) {
@@ -7836,7 +7877,7 @@ var adminVM = {
     adminVM.users = users;
   },
   getUserAvatar: function getUserAvatar(user) {
-    return "https://www.gravatar.com/avatar/".concat(MD5(user.email), "?d=https://ui-avatars.com/api/").concat(user.username, "/128/random");
+    return "https://www.gravatar.com/avatar/".concat(MD5(user.mail), "?d=https://ui-avatars.com/api/").concat(user.username, "/128/random");
   }
 };
 document.addEventListener("DOMContentLoaded", function () {
