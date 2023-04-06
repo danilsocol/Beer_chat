@@ -13,6 +13,8 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const MESSENGER = '/messenger';
 
+    public const ADMIN = '/admin';
+
     public function boot(): void
     {
         $this->configureRateLimiting();

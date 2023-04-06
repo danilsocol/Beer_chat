@@ -61,12 +61,13 @@ middleware('auth')->name('message.send');
 Route::get("/messages/{chat_id}", [MessageController::class, 'getAllMessages'])->
 middleware('auth')->name('chat.id');
 
-Route::prefix("admin")->controller("Admin\AdminController")->group(
+/*Route::prefix("admin")->controller("Admin\AdminController")->group(
     function () {
         Route::get('/', 'index')->
         middleware(['auth','admin'])->name('admin.index');
     }
-);
+);*/
 
-/*Route::get("/admin", [AdminController::class, 'index'])->
-middleware(['auth','admin'])->name('admin.index');*/
+Route::get("/admin", [AdminController::class, 'index'])->
+middleware(['auth','admin'])->name('admin.index');
+

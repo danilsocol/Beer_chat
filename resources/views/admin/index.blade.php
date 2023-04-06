@@ -6,11 +6,11 @@
     @if (Auth::check())
         <meta name="user_id" content="{{ Auth::user()->id }}" />
     @endif
-    <link rel="stylesheet" href="{{ asset("css/reset200802.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/reset.css") }}">
     <link rel="stylesheet" href="{{ asset("css/messenger.css") }}"/>
     <link rel="stylesheet" href="{{ asset("css/app.css") }}"/>
-    <script src="{{ asset("js/bootstrap.js") }}"></script>
-    <title>BEER CHAT</title>
+    <link rel="stylesheet" href="{{ asset("css/admin.css") }}"/>
+    <title>Beer Chat</title>
 </head>
 <body class="messenger-body">
 <ul class="messenger">
@@ -19,25 +19,29 @@
             <div class="user-block">
                 <div class="user-info">
                     <img class="user-image" src="{{$url}}" alt="profile">
-                    <span class="user-username">{{$user->username}}</span>
+                    <div class="user-name-username">
+                        <div class="container-user-username">
+                            <span class="user-username">{{$user->username}}</span>
+                        </div>
+                        <div class="container-user-name">
+                            <span class="user-name">{{$user->name}}</span>
+                        </div>
+                    </div>
+                    <form method="post" action="{{route('logout')}}" class="logout">
+                        @csrf
+                        <button type="submit" class="logout-btn">
+                            Logout
+                            <i data-feather="log-out" class="logout-icon icon"></i>
+                        </button>
+                    </form>
                 </div>
-                <span class="user-name">
-                        {{$user->name}}
-                    </span>
-                <form method="post" action="{{route('logout')}}" class="logout">
-                    @csrf
-                    <button type="submit" class="logout-btn">
-                        Logout
-                        <i data-feather="log-out" class="logout-icon icon"></i>
-                    </button>
-                </form>
             </div>
-            <div class="search-block">
+            <form class="search-block">
                 <input class="search-input" id="search-message">
                 <div class="search-btn">
                     <i data-feather="search" class="icon"></i>
                 </div>
-            </div>
+            </form>
             <div class="found-users">
                 <ul class="user-profiles" id="users">
 
@@ -48,14 +52,53 @@
     <li class="messenger-l-column">
         <section class="messenger-column">
             <div class="messenger-header">
-                <span class="messenger-header-text" id="chat-name">Admin, {{$user->name}}</span>
+                <span id="chat-name" class="messenger-header-text">Username</span>
             </div>
+            <div class="admin-user-info">
+                <img class="admin-user-image" src="{{$url}}" alt="profile">
+                <div class="admin-text">
+                    <div>
+                        <span class="admin-user-name">name:</span>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <span class="admin-user-name">nickname:</span>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <span class="admin-user-name">role:</span>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <span class="admin-user-name">mail:</span>
+                    </div>
+                </div>
 
+                <div class="admin-user-text">
+                    <div>
+                        <span class="admin-user-name">{{$user->name}}</span>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <span class="admin-user-name">{{$user->name}}</span>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <select id="r_selector" class="select-css">
+                            <option value=”r_user”>user</option>
+                            <option value=”r_admin”>admin</option>
+                            <option value=”r_fsb”>fsb</option>
+                        </select>
+                    </div>
+                    <div class="admin-user-name-container">
+                        <span class="admin-user-name">{{$user->name}}</span>
+                    </div>
+                </div>
+                <form method="delete">
+                    <button class="btn-delete">Удалить пользователя</button>
+                </form>
+
+            </div>
         </section>
     </li>
 </ul>
+<script src="{{ asset("js/bootstrap.js") }}"></script>
 <script src="{{ asset("js/app.js") }}"></script>
-<script src="{{ asset("js/admin.js") }}"></script>
-
+<script src="{{ asset("js/messenger.js") }}"></script>
 </body>
 </html>

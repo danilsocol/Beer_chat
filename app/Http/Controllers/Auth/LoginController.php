@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,12 @@ class LoginController extends Controller
             ]);
         }
         $request->session()->regenerate();
+
+        $user = User::where('id',Auth::user()->id)->with('role')->first();
+        if ($user->role_id == 2) {
+            return redirect(RouteServiceProvider::ADMIN);
+        }
+
 
         return redirect()->intended(RouteServiceProvider::MESSENGER);
     }

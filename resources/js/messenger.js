@@ -123,17 +123,14 @@ const messengerVM = {
                 <circle cx="100" cy="100" r="50" class="circle_loader" id="circle"></circle>
                 <text x="100" y="100" id="pct" ></text>
             </svg>`;
-        startAnimate()
         messengerVM.messageBlock.classList.add("center");
         apiManager.getAllMessages(chatId).then(data => {
             if (data.data) {
-                stopAnimate()
                 messengerVM.messageBlock.innerHTML = "";
                 messengerVM.messageBlock.classList.remove("center");
                 messengerVM.writeAllMessages(data.data)
             }
         }).catch(e => {
-            stopAnimate()
             messengerVM.messageBlock.innerHTML = "";
             messengerVM.messageBlock.classList.remove("center");
             console.log(e);

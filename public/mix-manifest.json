@@ -10,5 +10,6 @@
     "/css/messenger.css": "/css/messenger.css",
     "/css/app.css": "/css/app.css",
     "/css/welcome.css": "/css/welcome.css",
+    "/css/admin.css": "/css/admin.css",
     "/css/authentication.css": "/css/authentication.css"
 }

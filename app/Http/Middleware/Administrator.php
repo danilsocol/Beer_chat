@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Admin\AdminController;
 
 class Administrator
 {
@@ -23,7 +24,6 @@ class Administrator
         if ($user->role_id !== 2) {
             return redirect(RouteServiceProvider::HOME);
         }
-        dd($next);
         return $next($request);
     }
 }

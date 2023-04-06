@@ -2455,6 +2455,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/admin.css":
+/*!*********************************!*\
+  !*** ./resources/css/admin.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/welcome.css":
 /*!***********************************!*\
   !*** ./resources/css/welcome.css ***!
@@ -2627,6 +2640,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"css/messenger": 0,
 /******/ 			"css/app": 0,
 /******/ 			"css/welcome": 0,
+/******/ 			"css/admin": 0,
 /******/ 			"css/authentication": 0
 /******/ 		};
 /******/ 		
@@ -2677,15 +2691,16 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/auth.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/reg.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/messenger.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/reset.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/authentication.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/forgot-password.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/authentication"], () => (__webpack_require__("./resources/css/welcome.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/auth.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/reg.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/messenger.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/reset.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/authentication.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/forgot-password.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/admin.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/reg","css/auth","css/forgot-password","css/reset","css/messenger","css/app","css/welcome","css/admin","css/authentication"], () => (__webpack_require__("./resources/css/welcome.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -7735,9 +7735,9 @@ module.exports = axios;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!***********************************!*\
-  !*** ./resources/js/messenger.js ***!
-  \***********************************/
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/dist/browser/axios.cjs");
 var feather = __webpack_require__(/*! feather-icons */ "./node_modules/feather-icons/dist/feather.js");
 var MD5 = function MD5(d) {
@@ -7791,189 +7791,36 @@ function bit_rol(d, _) {
   return d << _ | d >>> 32 - _;
 }
 var apiManager = {
-  sendMessage: function sendMessage(text, chatId, userId) {
-    return axios.post("/message", {
-      message: text,
-      chat_id: chatId,
-      user_id: userId
-    });
-  },
   getUserByName: function getUserByName(name) {
     return axios.get("/user/" + name);
-  },
-  getAllChats: function getAllChats(userId) {
-    return axios.get("/chats/ " + userId);
-  },
-  getAllMessages: function getAllMessages(chatId) {
-    return axios.get("/messages/" + chatId);
-  },
-  getUserById: function getUserById(userId) {
-    return axios.get("/user/" + userId);
-  },
-  deleteMessage: function deleteMessage(messageId) {
-    return axios["delete"]("/message/".concat(messageId));
-  },
-  createChat: function createChat(firstUser, secondUser) {
-    return axios.post("/chat", {
-      user_id: firstUser,
-      second_user_id: secondUser
-    });
   }
 };
-var messengerVM = {
-  chatHeader: document.getElementById("chat-name"),
+var adminVM = {
   currentUser: Number(document.querySelector('meta[name="user_id"]').content),
-  messageBlock: document.getElementById("messages"),
   usersBlock: document.getElementById('users'),
-  currentChat: null,
-  userChats: [],
-  openChats: [],
-  sendMessage: function sendMessage(input) {
-    var text = input.value;
-    if (messengerVM.currentChat && messengerVM.currentChat.id != null) {
-      apiManager.sendMessage(text, messengerVM.currentChat.id, messengerVM.currentUser)["catch"](function (e) {
-        console.log(e);
-      });
-      input.value = "";
-    }
-    return false;
-  },
-  appendMessage: function appendMessage(message, user) {
-    var messenger = messengerVM.messageBlock;
-    if (message && user) {
-      messenger.appendChild(messengerVM.getMessageView(message, user, message.user_id === messengerVM.currentUser));
-      messenger.scrollTo(0, messenger.scrollHeight);
-    }
-  },
-  getMessageView: function getMessageView(message, user, isLeft) {
-    var elem = document.createElement('li');
-    elem.innerHTML = "<img class=\"low-user-image\" src=\"".concat(messengerVM.getUserAvatar(user), "\" alt=\"profile\">\n            <div class=\"message\">\n                <span class=\"message-text\">").concat(message.text, "</span>\n            </div>");
-    elem.classList.add("message-block");
-    elem.setAttribute("id", "message".concat(message.id));
-    if (isLeft) {
-      elem.classList.add("left-message");
-    } else {
-      elem.classList.add("right-message");
-    }
-    var messageText = elem.querySelector('.message');
-    messageText.addEventListener("contextmenu", function (e) {
-      e.preventDefault();
-      messageText.appendChild(messengerVM.createMessageMenu(message.id));
-    });
-    return elem;
-  },
-  createMessageMenu: function createMessageMenu(messageId) {
-    var menu = document.createElement('div');
-    var deleteSvg = feather.icons['trash-2'].toSvg({
-      "class": 'icon',
-      id: 'delete'
-    });
-    var closeSvg = feather.icons['x-circle'].toSvg({
-      "class": 'icon',
-      id: 'close'
-    });
-    menu.classList.add('menu');
-    menu.innerHTML = "".concat(deleteSvg).concat(closeSvg);
-    var closeBtn = menu.querySelector('#close');
-    var deleteBtn = menu.querySelector('#delete');
-    closeBtn.addEventListener('click', function () {
-      menu.remove();
-      closeBtn.classList.add('red-icon');
-    });
-    deleteBtn.addEventListener('click', function () {
-      deleteBtn.classList.add('red-icon');
-      apiManager.deleteMessage(messageId)["catch"](function (e) {
-        return console.log(e);
-      });
-      menu.remove();
-    });
-    var closeMenu = function closeMenu(e) {
-      if (!e.target.closest('.menu')) {
-        menu.remove();
-        document.removeEventListener("click", closeMenu, true);
-      }
-    };
-    document.addEventListener('contextmenu', closeMenu, true);
-    document.addEventListener('click', closeMenu, true);
-    return menu;
-  },
-  deleteMessageView: function deleteMessageView(messageId) {
-    var message = messengerVM.messageBlock.querySelector("#message".concat(messageId));
-    message.remove();
-  },
-  getUserAvatar: function getUserAvatar(user) {
-    return "https://www.gravatar.com/avatar/".concat(MD5(user.email), "?d=https://ui-avatars.com/api/").concat(user.username, "/128/random");
-  },
-  writeAllMessages: function writeAllMessages(messages) {
-    messages.forEach(function (message) {
-      messengerVM.appendMessage(message, message.user);
-    });
-  },
-  printAllMessages: function printAllMessages(chatId) {
-    messengerVM.messageBlock.innerHTML = "<svg class=\"loader\" width=\"200\" height=\"200\">\n                <circle cx=\"100\" cy=\"100\" r=\"50\" class=\"circle_loader\" id=\"circle\"></circle>\n                <text x=\"100\" y=\"100\" id=\"pct\" ></text>\n            </svg>";
-    messengerVM.messageBlock.classList.add("center");
-    apiManager.getAllMessages(chatId).then(function (data) {
-      if (data.data) {
-        messengerVM.messageBlock.innerHTML = "";
-        messengerVM.messageBlock.classList.remove("center");
-        messengerVM.writeAllMessages(data.data);
-      }
-    })["catch"](function (e) {
-      messengerVM.messageBlock.innerHTML = "";
-      messengerVM.messageBlock.classList.remove("center");
-      console.log(e);
-    });
-  },
+  users: [],
   getProfileView: function getProfileView(user) {
     var profile = document.createElement('div');
     profile.setAttribute("id", "user".concat(user.id));
     profile.classList.add("profile");
-    profile.innerHTML = "\n            <div class=\"user-item\">\n                <img class=\"user-item-image\" src=\"".concat(messengerVM.getUserAvatar(user), "\" alt=\"profile\">\n                <span class=\"user-item-username\" >").concat(user.name, "</span>\n            </div>");
+    profile.innerHTML = "\n            <img class=\"min-user-image\" src=\"".concat(adminVM.getUserAvatar(user), "\" alt=\"profile\">\n            <span class=\"profile-name\">").concat(user.name, "</span>");
     profile.addEventListener("click", function () {
-      if (!(messengerVM.currentChat && (messengerVM.currentChat.second_user_id === user.id || messengerVM.currentChat.first_user_id === user.id))) {
-        messengerVM.openChat(user);
-      }
+      //TODO open user profile
     });
     return profile;
   },
-  openChat: function openChat(user) {
-    apiManager.createChat(messengerVM.currentUser, user.id).then(function (data) {
-      messengerVM.messageBlock.innerHTML = "";
-      messengerVM.messageBlock.classList.remove("center");
-      messengerVM.currentChat = data.data;
-      messengerVM.writeAllMessages(data.data.messages);
-      messengerVM.chatHeader.textContent = user.name;
-      if (!messengerVM.openChats.find(function (x) {
-        return x.id === messengerVM.currentChat.id;
-      })) {
-        messengerVM.openChats.push({
-          id: messengerVM.currentChat.id
-        });
-        console.log(messengerVM.openChats);
-        Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageSend', function (e) {
-          messengerVM.appendMessage(e.message, e.user);
-        });
-        Echo["private"]("chat.".concat(messengerVM.currentChat.id)).listen('MessageDelete', function (e) {
-          messengerVM.deleteMessageView(e.message.id);
-        });
-      }
-    })["catch"](function () {
-      messengerVM.messageBlock.innerHTML = "";
-      messengerVM.messageBlock.classList.remove("center");
-    });
-  },
   printProfiles: function printProfiles(users) {
     users.forEach(function (user) {
-      var haveUser = messengerVM.userChats.find(function (x) {
+      var haveUser = adminVM.users.find(function (x) {
         return x.id === user.id;
       });
-      if (!haveUser && user.id !== messengerVM.currentUser) {
-        messengerVM.userChats.push(user);
-        var profileHtml = messengerVM.getProfileView(user);
-        messengerVM.usersBlock.appendChild(profileHtml);
+      if (!haveUser && user.id !== adminVM.currentUser) {
+        adminVM.users.push(user);
+        var profileHtml = adminVM.getProfileView(user);
+        adminVM.usersBlock.appendChild(profileHtml);
       }
     });
-    messengerVM.userChats.forEach(function (user) {
+    adminVM.users.forEach(function (user) {
       var haveUser = users.find(function (x) {
         return x.id === user.id;
       });
@@ -7986,56 +7833,20 @@ var messengerVM = {
         users.push(user);
       }
     });
-    messengerVM.userChats = users;
+    adminVM.users = users;
   },
-  printAllChats: function printAllChats() {
-    apiManager.getAllChats(messengerVM.currentUser).then(function (data) {
-      var chats = data.data;
-      chats.forEach(function (chat) {
-        if (chat.from.id !== messengerVM.currentUser) {
-          messengerVM.userChats.push(chat.from);
-          var profileHtml = messengerVM.getProfileView(chat.from);
-          messengerVM.usersBlock.appendChild(profileHtml);
-        } else {
-          messengerVM.userChats.push(chat.to);
-          var _profileHtml = messengerVM.getProfileView(chat.to);
-          messengerVM.usersBlock.appendChild(_profileHtml);
-        }
-      });
-    })["catch"](function (e) {
-      console.log(e);
-    });
+  getUserAvatar: function getUserAvatar(user) {
+    return "https://www.gravatar.com/avatar/".concat(MD5(user.email), "?d=https://ui-avatars.com/api/").concat(user.username, "/128/random");
   }
 };
 document.addEventListener("DOMContentLoaded", function () {
   Echo["private"]('users').listen('UserGetByName', function (e) {
-    messengerVM.printProfiles(e.users);
+    adminVM.printProfiles(e.users);
   });
-  var sender = document.getElementById("messageSender");
-  var message = document.getElementById("message");
   var searchInput = document.getElementById("search-message");
-  if (messengerVM.currentChat && messengerVM.currentChat.id != null) {
-    messengerVM.printAllMessages(messengerVM.currentChat.id);
-  }
-  if (messengerVM.currentUser !== null) {
-    messengerVM.printAllChats();
-  }
-  if (sender) {
-    sender.addEventListener("click", function () {
-      return messengerVM.sendMessage(message);
-    });
-  }
   if (searchInput) {
     searchInput.addEventListener("input", function (e) {
       apiManager.getUserByName(e.target.value);
-    });
-  }
-  if (message) {
-    message.addEventListener("keyup", function (e) {
-      e.preventDefault();
-      if (e.key === 'Enter') {
-        sender.click();
-      }
     });
   }
 });
